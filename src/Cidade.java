@@ -16,6 +16,14 @@ public class Cidade implements Comparable<Cidade>{
 		this.h = h;
 	}
 	
+	
+	public Cidade(String nome, Cidade anterior) {
+		super();
+		this.nome = nome;
+		this.anterior = anterior;
+	}
+
+
 	@Override
 	public int compareTo(Cidade other) {
 	    if (this.getF() > other.getF()) {

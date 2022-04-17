@@ -68,50 +68,42 @@ public class principal {
 
 				}
 				
-//				System.out.println(mapa.cidades.contains(new Cidade(valorComSplit[0])));
-//				System.out.println(mapa.cidades.contains(new Cidade(valorComSplit[1])));
-//				System.out.println(mapa.cidades.indexOf(new Cidade(valorComSplit[0])));
-//				System.out.println(mapa.cidades.indexOf(new Cidade(valorComSplit[1])));
-//				System.out.println(mapa.cidades.get(mapa.cidades.indexOf(new Cidade(valorComSplit[0]))));
-//				System.out.println(mapa.cidades.get(mapa.cidades.indexOf(new Cidade(valorComSplit[1]))));
-				
-
-//				for (String s : valorComSplit) {
-//					System.out.println(s);
-//				}
-//
-//				System.out.println("=========================");
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		mapa.caminhar(mapa.cidades.get(mapa.cidades.indexOf(new Cidade("Arad"))), mapa.cidades.get(mapa.cidades.indexOf(new Cidade("Bucareste"))));
-		System.out.println(mapa.toString());
+		//System.out.println(mapa.caminho);
 		
-		mapa.imprimirCaminho( mapa.cidades.get(mapa.cidades.indexOf(new Cidade("Bucareste"))));
-//			distancia_reta = {
-//					'arad': 366,
-//					'bucharest': 0,
-//					'craiova': 160,
-//					'dobreta': 242,
-//					'eforie': 161,
-//					'fagaras': 176,
-//					'giurgiu': 77,
-//					'hirsova': 151,
-//					'iasi': 226,
-//					'lugoj': 244,
-//					'mehadia': 241,
-//					'neamt': 234,
-//					'oradea': 380,
-//					'pitesti': 100,
-//					'rimnicu vikea': 193,
-//					'sibiu': 253,
-//					'timisoara': 329,
-//					'urziceni': 80,
-//					'vaslui': 199,
-//					'zerind': 374
-//			     }
+		for (Cidade cidade : mapa.caminho) {
+			System.out.print(cidade.nome+"==>");
+		}
+		
+//		Cidade atual=mapa.caminho.remove(0);
+//		Cidade proxima=new Cidade(null);
+//		System.out.print(atual.nome+"==>");
+//		while (!mapa.caminho.isEmpty()) {
+//			proxima=mapa.caminho.remove(0);
+//			if(mapa.isLink(atual,proxima)||mapa.isLink(atual,proxima)) {
+//				System.out.print(proxima.nome+"==>");
+//				
+//			}else {
+//			//proxima=mapa.caminho.remove(0);
+//				
+//			}
+//			atual=proxima;
+//			//Cidade aux=atual;
+//			
+//			
+//			
+//
+//			
+//			
+//		}
+		
+//	mapa.imprimirCaminho( mapa.cidades.get(mapa.cidades.indexOf(new Cidade("Bucareste"))));
+
 	}
 
 }

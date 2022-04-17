@@ -9,10 +9,9 @@ public class Mapa {
 
 	ArrayList<Cidade> cidades;
 	ArrayList<Rota> rotas;
-//	List<Cidade> expandidas = new ArrayList<Cidade>();
 	Set<Cidade> exp = new HashSet<Cidade>();
 	List<Cidade>caminho= new ArrayList<Cidade>();
-	Cidade arvore;
+
 
 	public Mapa() {
 		this.cidades = new ArrayList<Cidade>();
@@ -34,44 +33,32 @@ public class Mapa {
 	}
 
 	public Cidade vaiParaProxima(Cidade origem) {
-		// Cidade origem=this.cidades.get(this.cidades.indexOf(new Cidade("Arad")));
 		if (!origem.adjacentes.isEmpty()) {
 			for (Rota adj : origem.adjacentes) {
 				adj.destino.setG(origem.g + adj.distancia);
-//				this.expandidas.add(adj.destino);
 				this.exp.add(adj.destino);
 				adj.destino.anterior = origem;
 			}
 
 		}
 
-//		Collections.sort(this.expandidas);
 		List<Cidade> iteretor=new ArrayList<>(this.exp);
 		Collections.sort(iteretor);
-		System.out.println("=======Expandidas======");
-//		for (Cidade cidade : this.expandidas) {
-//			System.out.print(cidade.nome + "====>f:" + cidade.getF() + "\t");
-//		}
+		System.out.println("Anterior à Cidade do menor f:"+iteretor.get(0).anterior.nome);
+		System.out.println("=======Estado da Expanção======");
 		for (Cidade cidade :iteretor) {
 			
 			System.out.print(cidade.nome + "====>f:" + cidade.getF() + " g:"+cidade.getG()+" h:"+cidade.getH()+"\t");
 		}
-//		System.out.println();
-//		Cidade menor = this.expandidas.remove(0);
+		System.out.println();
 		Cidade menor=iteretor.remove(0);
 		this.exp.remove(menor);
 		
 		if (this.isLink(origem, menor) && this.isLink(menor, origem)) {
-			System.out.println("anterior:" + menor.anterior.nome);
 			origem.anterior=null;
-			Cidade auxOrigem=new Cidade(menor.nome,origem);
-			this.arvore=auxOrigem;
 			this.caminho.add(menor);
 		}else {
-//			System.out.println("anterior:" + menor.anterior.nome);
-//			System.out.println("Foi retirada:" + this.caminho.peek().nome);
-			// Cidade c=this.caminho.peek();
-
+			
 			this.caminho.add(menor);
 			
 			
@@ -88,12 +75,11 @@ public class Mapa {
 		this.caminho.add(origem);
 		
 
-
+		
 		while (!origem.equals(destino)) {
 			origem = this.vaiParaProxima(origem);
 
 		}
-//		this.imprimirCaminho(this.arvore);
 
 	}
 

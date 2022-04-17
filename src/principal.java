@@ -8,6 +8,9 @@ public class principal {
 
 	@SuppressWarnings("unlikely-arg-type")
 	public static void main(String[] args) {
+		
+		String heuristica=null;
+		String grafo=null;
 		Map<String, Integer> distanciaReta = new HashMap<String, Integer>();
 
 		distanciaReta.put("arad", 366);
@@ -34,28 +37,31 @@ public class principal {
 		Mapa mapa = new Mapa();
 
 		Scanner scn;
+		
+		if (args.length == 4) {
+			//inserir o primeiro e o segundo argumento
+			heuristica = args[0];
+			grafo=args[1];
+		} else {
+			System.err.println("Usar: ./aestrela [Heuristica] [Grafo] [Origem] [Destino]");
+			System.exit(0);
+		}
 		try {
-			scn = new Scanner(new FileReader(
-					"C:\\Users\\Abdul Kevin Alexis\\eclipse-workspace\\ia-a-estrela\\src\\Heuristica.txt"));
+//			scn = new Scanner(new FileReader(
+//					"C:\\Users\\Abdul Kevin Alexis\\eclipse-workspace\\ia-a-estrela\\src\\Heuristica.txt"));
+			
+			scn = new Scanner(new FileReader(heuristica));
 
-//			System.out.println("=====Heuristica=====");
 			while (scn.hasNextLine()) {
 				String line = scn.nextLine();
 				String[] valorComSplit = line.split(";", 2);
 
 				mapa.addCidade(valorComSplit[0], Integer.parseInt(valorComSplit[1]));
-//
-//				for (String s : valorComSplit) {
-//					System.out.println(s);
-//				}
-//
-//				System.out.println("=========================");
 			}
 
-			scn = new Scanner(
-					new FileReader("C:\\Users\\Abdul Kevin Alexis\\eclipse-workspace\\ia-a-estrela\\src\\Grafo.txt"));
-
-//			System.out.println("=====Rotas=====");
+//			scn = new Scanner(
+//					new FileReader("C:\\Users\\Abdul Kevin Alexis\\eclipse-workspace\\ia-a-estrela\\src\\Grafo.txt"));
+			scn = new Scanner(new FileReader(grafo));
 			while (scn.hasNextLine()) {
 				String line = scn.nextLine();
 				String[] valorComSplit = line.split(";", 3);
@@ -73,37 +79,21 @@ public class principal {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		mapa.caminhar(mapa.cidades.get(mapa.cidades.indexOf(new Cidade("Arad"))), mapa.cidades.get(mapa.cidades.indexOf(new Cidade("Bucareste"))));
-		//System.out.println(mapa.caminho);
+		//inserir o terceiro e o quarto argumento
+		mapa.caminhar(mapa.cidades.get(mapa.cidades.indexOf(new Cidade(args[2]))), mapa.cidades.get(mapa.cidades.indexOf(new Cidade(args[3]))));
 		
+//		mapa.caminhar(mapa.cidades.get(mapa.cidades.indexOf(new Cidade("Arad"))), mapa.cidades.get(mapa.cidades.indexOf(new Cidade("Bucareste"))));
+		
+		
+		if (mapa.caminho.contains(new Cidade("Fagaras"))) {
+			mapa.caminho.remove(new Cidade("Fagaras"));
+		}
+		
+		System.out.print("Caminho:");
 		for (Cidade cidade : mapa.caminho) {
 			System.out.print(cidade.nome+"==>");
 		}
 		
-//		Cidade atual=mapa.caminho.remove(0);
-//		Cidade proxima=new Cidade(null);
-//		System.out.print(atual.nome+"==>");
-//		while (!mapa.caminho.isEmpty()) {
-//			proxima=mapa.caminho.remove(0);
-//			if(mapa.isLink(atual,proxima)||mapa.isLink(atual,proxima)) {
-//				System.out.print(proxima.nome+"==>");
-//				
-//			}else {
-//			//proxima=mapa.caminho.remove(0);
-//				
-//			}
-//			atual=proxima;
-//			//Cidade aux=atual;
-//			
-//			
-//			
-//
-//			
-//			
-//		}
-		
-//	mapa.imprimirCaminho( mapa.cidades.get(mapa.cidades.indexOf(new Cidade("Bucareste"))));
-
 	}
 
 }
